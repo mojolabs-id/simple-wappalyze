@@ -32,6 +32,7 @@ export class Wappalyzer {
 
 	async prepare(force_fetch: boolean): Promise<Wappalyzer> {
 		try {
+			if(this.loaded &&  !force_fetch) return Promise.resolve(this);
 			if (!fs.existsSync(this.path)) fs.mkdirSync(this.path);
 			const definitions: Record<PropKey, WappalyzerProp> = { technologies: {}, categories: {} };
 			for (const [name, filename] of Object.entries(this.files)) {
@@ -47,6 +48,7 @@ export class Wappalyzer {
 			this.loaded = true;
 			return Promise.resolve(this);
 		} catch (err) {
+			this.loaded = false;
 			return Promise.reject(err);
 		}
 	}
