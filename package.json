@@ -1,0 +1,64 @@
+{
+  "name": "@mojolabs-id/simple-wappalyzer",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Mojolabs <root@mojolabs.id>",
+  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mojolabs-id/simple-wappalyzer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mojolabs-id/simple-wappalyzer/issues"
+  },
+  "homepage": "https://github.com/mojolabs-id/simple-wappalyzer#readme",
+  "scripts": {
+    "start": "node dist/demo/test.js",
+    "build": "tsup",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest"
+  },
+  "files": [
+    "/dist"
+  ],
+  "engines": {
+    "node": ">=18.13.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "@/(.*)": "<rootDir>/src/$1"
+    },
+    "modulePaths": [
+      "node_modules",
+      "<rootDir>"
+    ],
+    "collectCoverage": false,
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testRegex": "^.+\\.spec\\.[tj]s$"
+  },
+  "dependencies": {
+    "undici": "^5.25.4",
+    "wappalyzer-core": "6.10.66"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.31",
+    "@types/jest": "^29.4.0",
+    "@types/node": "^18.14.1",
+    "cheerio": "^1.0.0-rc.12",
+    "cross-env": "^7.0.3",
+    "jest": "^29.4.3",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "tsup": "^7.2.0",
+    "tsx": "^3.12.10",
+    "typescript": "^4.9.5"
+  }
+}
