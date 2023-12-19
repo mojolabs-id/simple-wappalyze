@@ -5,6 +5,7 @@ import { fetch } from 'undici';
 import  os from 'node:os';
 export type TypeProp = Core.Category | Core.Technology
 export type WappalyzerProp<T extends TypeProp = TypeProp> = Record<string, T>
+import { name as libname } from '../package.json';
 
 export type WappalyzerOption = {
 	repository?: string
@@ -19,7 +20,7 @@ export type Metadata = Core.Input
 
 export class Wappalyzer {
 	protected loaded: boolean = false;
-	protected cache_path: string = path.resolve(path.join(os.homedir(),'.cache/@mojolabs/simple-wappalyzer'));
+	protected cache_path: string = path.resolve(path.join(os.homedir(),'.cache',libname));
 	protected repository: string = 'enthec/webappanalyzer';
 	private readonly files: { categories: string; technologies: string; };
 
