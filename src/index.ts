@@ -19,7 +19,7 @@ export type Metadata = Core.Input
 
 export class Wappalyzer {
 	protected loaded: boolean = false;
-	protected cache_path: string = path.resolve(path.join(os.homedir(), '.simple-wappalyzer'));
+	protected cache_path: string = path.resolve(path.join(os.homedir(),'.cache/@mojolabs/simple-wappalyzer'));
 	protected repository: string = 'enthec/webappanalyzer';
 	private readonly files: { categories: string; technologies: string; };
 
@@ -37,7 +37,7 @@ export class Wappalyzer {
 	async prepare(force_fetch: boolean): Promise<Wappalyzer> {
 		try {
 			if(this.loaded &&  !force_fetch) return Promise.resolve(this);
-			if (!fs.existsSync(this.cache_path)) fs.mkdirSync(this.cache_path);
+			if (!fs.existsSync(this.cache_path)) fs.mkdirSync(this.cache_path,{recursive:true});
 			const definitions: Record<PropKey, WappalyzerProp> = { technologies: {}, categories: {} };
 			for (const [name, filename] of Object.entries(this.files)) {
 				if (fs.existsSync(filename) && !force_fetch) {
