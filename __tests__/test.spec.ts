@@ -3,7 +3,7 @@ import cheerio from "cheerio";
 import { fetch } from 'undici'
 
 describe('check', () => {
-    const wappalyzer = new Wappalyzer({path:'test'});
+    const wappalyzer = new Wappalyzer();
     it('test', async () => {
         const site = 'http://www.katyperry.com/'
         const resolutions = await fetch(site).then(x => x.text()).then( function (html) {

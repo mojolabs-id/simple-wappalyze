@@ -3,6 +3,7 @@ import Core from 'wappalyzer-core';
 type TypeProp = Core.Category | Core.Technology;
 type WappalyzerProp<T extends TypeProp = TypeProp> = Record<string, T>;
 type WappalyzerOption = {
+    repository?: string;
     path?: string;
     custom_categories?: WappalyzerProp<Core.Category>;
     custom_technologies?: WappalyzerProp<Core.Technology>;
@@ -12,7 +13,8 @@ type Metadata = Core.Input;
 declare class Wappalyzer {
     readonly options: WappalyzerOption;
     protected loaded: boolean;
-    protected path: string;
+    protected cache_path: string;
+    protected repository: string;
     private readonly files;
     constructor(options?: WappalyzerOption);
     prepare(force_fetch: boolean): Promise<Wappalyzer>;
@@ -20,4 +22,4 @@ declare class Wappalyzer {
     private fetch;
 }
 
-export { Metadata, PropKey, TypeProp, Wappalyzer, WappalyzerOption, WappalyzerProp, Wappalyzer as default };
+export { type Metadata, type PropKey, type TypeProp, Wappalyzer, type WappalyzerOption, type WappalyzerProp, Wappalyzer as default };
